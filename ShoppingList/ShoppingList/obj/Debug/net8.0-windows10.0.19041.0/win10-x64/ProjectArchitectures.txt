@@ -1,0 +1,1 @@
+C:\Users\megak\source\repos\ShoppingList\ShoppingList\ShoppingList.csproj;x64

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShoppingList.Views.MainPage">
+
+    <StackLayout Padding="10">
+        <Label Text="Add New Product" FontSize="Medium" HorizontalOptions="Center" />
+
+        <Entry x:Name="NameEntry" Placeholder="Product Name" />
+        <Entry x:Name="UnitEntry" Placeholder="Unit (e.g., kg, l, pcs)" />
+
+        <Button Text="Add Product" Clicked="OnAddProductClicked" />
+
+        <ListView x:Name="ProductsListView" ItemTapped="OnProductTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Name}">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="TextColor" Value="white" />
+                                        <Style.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding IsPurchased}" Value="True">
+                                                <Setter Property="TextColor" Value="Gray" />
+                                                <Setter Property="TextDecorations" Value="Strikethrough" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <Label Text="{Binding Quantity}" />
+                            <Label Text="{Binding Unit}" />
+                            <Button Text="+" Clicked="OnIncreaseClicked" />
+                            <Button Text="-" Clicked="OnDecreaseClicked" />
+                            <Button Text="Delete" Clicked="OnDeleteClicked" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
